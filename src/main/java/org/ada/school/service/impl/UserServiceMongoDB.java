@@ -40,7 +40,12 @@ public class UserServiceMongoDB implements UserService {
 
     @Override
     public User update(UserDto userDto, String id) {
-
-        return null;
+        User user=null;
+        if(userRepository.existsById(id)){
+            UserDocument userDoc = userRepository.findById(id).get();
+            user = userDoc.update(userDto);
+            userRepository.save(userDoc);
+        }
+        return user;
     }
 }
