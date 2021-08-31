@@ -25,7 +25,9 @@ public class UserServiceMongoDB implements UserService {
 
     @Override
     public User findById(String id) {
-        return null;
+        User user = new User();
+        user.updateFromDocument(userRepository.findById(id).get());
+        return user;
     }
 
     @Override
