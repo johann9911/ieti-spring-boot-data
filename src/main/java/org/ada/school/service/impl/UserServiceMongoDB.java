@@ -8,6 +8,7 @@ import org.ada.school.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,7 +21,10 @@ public class UserServiceMongoDB implements UserService {
 
     @Override
     public User create(User user) {
-        return null;
+        UserDocument newUser = new UserDocument();
+        newUser.updateFromUser(user);
+        userRepository.insert(newUser);
+        return user;
     }
 
     @Override
@@ -32,7 +36,14 @@ public class UserServiceMongoDB implements UserService {
 
     @Override
     public List<User> all() {
-        return null;
+        List<UserDocument> listUser = userRepository.findAll();
+        List<User> listFinalUser = new ArrayList<User>();
+        for(UserDocument user:listUser){
+            User u = new User();
+            u.updateFromDocument(user);
+            listFinalUser.add(u);
+        }
+        return listFinalUser;
     }
 
     @Override
@@ -49,7 +60,8 @@ public class UserServiceMongoDB implements UserService {
         User user=null;
         if(userRepository.existsById(id)){
             UserDocument userDoc = userRepository.findById(id).get();
-            user = userDoc.update(userDto);
+            userDoc.update(userDto);
+            user = new User(userDto);
             userRepository.save(userDoc);
         }
         return user;

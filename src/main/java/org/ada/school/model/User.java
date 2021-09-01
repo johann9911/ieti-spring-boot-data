@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.UUID;
 
 public class User
-
 {
 
     String id;
@@ -56,5 +55,17 @@ public class User
         lastName=userDoc.getLastName();
         email= userDoc.getEmail();
         createdAt=userDoc.getCreatedAt();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 }

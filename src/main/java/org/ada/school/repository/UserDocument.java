@@ -27,12 +27,17 @@ public class UserDocument
     {
     }
 
-    public User update(UserDto user) {
+    public void update(UserDto user) {
         this.name=user.getName();
         this.lastName=user.getLastName();
         this.email=user.getEmail();
-        User userM = new User(user);
-        return userM;
+    }
+
+    public void updateFromUser(User user) {
+        this.name=user.getName();
+        this.lastName=user.getLastName();
+        this.email=user.getEmail();
+        this.createdAt=user.getCreatedAt();
     }
 
     public String getId() {
