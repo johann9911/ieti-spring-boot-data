@@ -6,6 +6,7 @@ import org.ada.school.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,6 +60,16 @@ public class UserServiceHashMap
         {
             return null;
         }
+    }
+
+    @Override
+    public List<User> findUsersWithNameOrLastNameLike(String queryText) {
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersCreatedAfter(Date startDate) {
+        return null;
     }
 
 
